@@ -26,7 +26,6 @@ Welcome to the **Time Capsule** project! This application allows users to create
       - [Create a New Capsule](#create-a-new-capsule)
       - [Get All Capsules (Future Feature)](#get-all-capsules-future-feature)
   - [Project Structure](#project-structure)
-  - [License](#license)
 
 ---
 
@@ -284,11 +283,5 @@ time-capsule/
 ├── go.sum                 // Go dependencies lock file
 └── main.go                // Application entry point
 ```
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
