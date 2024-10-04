@@ -1,0 +1,42 @@
+# Binaries and build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build output directories
+/bin/
+/pkg/
+
+# Vendor directory (if dependencies are vendored)
+vendor/
+
+# Database files
+*.db
+timecapsule.db
+
+# Environment variables file
+.env
+
+# Log files
+*.log
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage.out
+
+# Temporary files
+*.tmp
+*.temp

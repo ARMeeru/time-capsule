@@ -1,0 +1,33 @@
+run:
+  timeout: 5m
+
+linters:
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - gofmt
+    - goimports
+    - gosimple
+    - unconvert
+    - unused
+    - ineffassign
+    - typecheck
+    - revive
+
+linters-settings:
+  gofmt:
+    simplify: true
+  goimports:
+    local-prefixes: github.com/ARMeeru/time-capsule
+  revive:
+    severity: warning
+    config: path/to/revive.toml  # Optional custom config
+
+issues:
+  exclude-use-default: false
+  # Exclude specific issues or directories if necessary
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
