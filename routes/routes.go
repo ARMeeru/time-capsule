@@ -1,9 +1,10 @@
 package routes
 
 import (
+	"github.com/gin-gonic/gin"
+
 	"github.com/ARMeeru/time-capsule/controllers"
 	"github.com/ARMeeru/time-capsule/middlewares"
-	"github.com/gin-gonic/gin"
 )
 
 func InitRoutes(router *gin.Engine) {

@@ -3,9 +3,10 @@ package controllers
 import (
 	"time"
 
+	"github.com/gin-gonic/gin"
+
 	"github.com/ARMeeru/time-capsule/models"
 	"github.com/ARMeeru/time-capsule/utils"
-	"github.com/gin-gonic/gin"
 )
 
 func ShowCreateCapsulePage(c *gin.Context) {
