@@ -1,0 +1,19 @@
+{{ define "title" }}Create Capsule{{ end }}
+
+{{ define "content" }}
+<h1>Create a Time Capsule</h1>
+{{ if .Error }}
+    <p style="color: red;">{{ .Error }}</p>
+{{ end }}
+{{ if .Success }}
+    <p style="color: green;">{{ .Success }}</p>
+{{ end }}
+<form action="/capsules" method="post">
+    <label>Message:</label><br>
+    <textarea name="message" required></textarea><br>
+    <label>Deliver At (YYYY-MM-DD HH:MM):</label><br>
+    <input type="datetime-local" name="deliver_at" required><br>
+    <button type="submit">Create Capsule</button>
+</form>
+<p><a href="/logout">Logout</a></p>
+{{ end }}

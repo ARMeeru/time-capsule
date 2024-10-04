@@ -1,23 +1,23 @@
 package routes
 
 import (
-	"github.com/gin-gonic/gin"
-
 	"github.com/ARMeeru/time-capsule/controllers"
 	"github.com/ARMeeru/time-capsule/middlewares"
+	"github.com/gin-gonic/gin"
 )
 
 func InitRoutes(router *gin.Engine) {
-	api := router.Group("/api")
-	{
-		// Public routes
-		api.POST("/register", controllers.Register)
-		api.POST("/login", controllers.Login)
+	// Public routes
+	router.GET("/register", controllers.ShowRegisterPage)
+	router.POST("/register", controllers.Register)
+	router.GET("/login", controllers.ShowLoginPage)
+	router.POST("/login", controllers.Login)
 
-		// Protected routes
-		api.Use(middlewares.AuthMiddleware())
-		{
-			api.POST("/capsules", controllers.CreateCapsule)
-		}
-	}
+	// Protected routes
+	authorized := router.Group("/")
+	authorized.Use(middlewares.AuthMiddleware())
+
+	authorized.GET("/capsules/new", controllers.ShowCreateCapsulePage)
+	authorized.POST("/capsules", controllers.CreateCapsule)
+	authorized.GET("/logout", controllers.Logout)
 }

@@ -12,16 +12,22 @@ import (
 
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		var tokenString string
+
+		// First, try to get the token from the Authorization header
 		authHeader := c.GetHeader("Authorization")
-		if authHeader == "" {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorization header missing"})
-			c.Abort()
-			return
+		if authHeader != "" {
+			tokenString = strings.TrimPrefix(authHeader, "Bearer ")
+		} else {
+			// If not in header, try to get it from the cookie
+			tokenCookie, err := c.Cookie("token")
+			if err == nil {
+				tokenString = tokenCookie
+			}
 		}
 
-		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
-		if tokenString == authHeader {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token format"})
+		if tokenString == "" {
+			c.Redirect(http.StatusSeeOther, "/login")
 			c.Abort()
 			return
 		}
@@ -34,7 +40,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		})
 
 		if err != nil || !token.Valid {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
+			c.Redirect(http.StatusSeeOther, "/login")
 			c.Abort()
 			return
 		}
